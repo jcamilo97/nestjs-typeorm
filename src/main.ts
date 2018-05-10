@@ -4,7 +4,7 @@ import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = 3000;
+  const port = 5000;
   app.enableCors();
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());

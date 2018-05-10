@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
 import { DependenceProviders } from './dependence.providers';
 import { DependenceService } from './dependence.service';
-import { ControlLineController} from './controlLine.controller';
+import { DependenceController} from './dependence.controller';
 
 @Module({
   imports: [DatabaseModule],
@@ -11,6 +11,6 @@ import { ControlLineController} from './controlLine.controller';
     ...DependenceProviders,
     DependenceService,
   ],
-  controllers:[ControlLineController],
+  controllers:[DependenceController],
 })
 export class ControlLineModule {}

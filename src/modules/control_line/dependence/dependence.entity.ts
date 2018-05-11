@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Company } from '../company/company.enity' 
 
 @Entity()
 export class Dependence {
@@ -21,5 +22,8 @@ export class Dependence {
     @Column("int4")
     dependencecompanycom_id: number;
 
+    
+    @ManyToOne(type => Company, company => company.dependences)
+    company: Company;
     
 }

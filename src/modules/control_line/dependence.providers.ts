@@ -1,6 +1,7 @@
 
 import { Connection, Repository } from 'typeorm';
-import { Dependence } from './entities/dependence.entity';
+import { Dependence } from './dependence/dependence.entity';
+import { Company } from './company/company.enity';
 
 export const DependenceProviders = [
   {
@@ -8,4 +9,9 @@ export const DependenceProviders = [
     useFactory: (connection: Connection) => connection.getRepository(Dependence),
     inject: ['DbConnectionToken'],
   },
+  {
+    provide: 'CompanyRepositoryToken',
+    useFactory: (connection: Connection) => connection.getRepository(Company),
+    inject: ['DbConnectionToken'],
+  }
 ];

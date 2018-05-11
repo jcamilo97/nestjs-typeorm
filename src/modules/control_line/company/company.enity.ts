@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, OneToMany, JoinColumn } from 'typeorm';
-import { Dependence } from '../entities/dependence.entity'
+import { Dependence } from '../dependence/dependence.entity'
 @Entity()
 export class Company {
     
@@ -33,12 +33,12 @@ export class Company {
     @Column('int4')
     companycom_id:number;
 
-    @Column('numeric(12,7)')
+    @Column('numeric')
     com_lat:number;
 
-    @Column('numeric(12,7)')
+    @Column('numeric')
     com_lng:number;
 
-    @OneToMany(type => Dependence, Dependence => Dependence.companycom_id)
-    dependence: Dependence[];
+    @OneToMany(type => Dependence, dependence => dependence.companycom_id)
+    dependences: Dependence[];
 }

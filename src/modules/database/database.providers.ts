@@ -1,4 +1,6 @@
 import { createConnection } from 'typeorm';
+import { Company } from "../control_line/company/company.enity";
+import { Dependence } from "../control_line/dependence/dependence.entity";
 
 export const databaseProviders = [
     {
@@ -11,7 +13,7 @@ export const databaseProviders = [
             password: 'root',
             database: 'Sgdea',
             entities: [
-                __dirname + '/../**/*.entity{.ts,.js}'
+               Company, Dependence
             ],
             synchronize: false,
         }),

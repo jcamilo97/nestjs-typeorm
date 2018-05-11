@@ -3,25 +3,23 @@ import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
 @Entity()
 export class Dependence {
     
-    @PrimaryColumn("int4")
-    depid: number;
-
-    @Column("varchar",{length:200})
-    depname: string;
-
-    @Column()
-    depstate: boolean;
-    
-    @PrimaryColumn("int4")
-    companycomid:number;
-
-    @Column("int4")
-    dependencedepid: number;
-
-    @Column("int4")
-    dependencecompanycomid: number;
+    @PrimaryColumn("varchar",{length:200})
+    dep_name: string;
 
     @Column()
     dep_type: boolean;
+
+    @Column()
+    dep_state: boolean;
+    
+    @PrimaryColumn("int4")
+    companycom_id:number;
+
+    @Column()
+    dependencedep_name: string;
+
+    @Column("int4")
+    dependencecompanycom_id: number;
+
     
 }

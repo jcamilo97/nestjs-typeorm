@@ -15,9 +15,9 @@ export class DependenceService {
 
   async create(dependenceItem){
     let dependence = new Dependence()
-    dependence.depname = dependenceItem.name;
+    dependence.dep_name = dependenceItem.name;
     dependence.dep_type = dependenceItem.type;
-    dependence.companycomid = dependenceItem.companyid;
+    dependence.companycom_id = dependenceItem.companyid;
     return await this.CompanyRepository.save(dependence)
     .then(res => {
        // TODO: Add some logic here

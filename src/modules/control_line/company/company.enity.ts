@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, CreateDateColumn, OneToMany, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, Index, CreateDateColumn, OneToMany, JoinColumn } from 'typeorm';
 import { Dependence } from '../dependence/dependence.entity'
 @Entity()
 export class Company {
@@ -6,9 +6,11 @@ export class Company {
     @PrimaryGeneratedColumn()
     com_id: number;
 
+    @Index({ unique: true })
     @Column()
     com_nit:number;
 
+    @Index({ unique: true })
     @Column({length:200})
     com_name: string;
 
@@ -27,7 +29,7 @@ export class Company {
     @Column()
     com_type: string;
     
-    @CreateDateColumn({nullable:true,type:"date",default:'now'})
+    @CreateDateColumn({nullable:true,type:"date",default:"('now'::text)::date"})
     com_created_at:string;
 
     @Column('int4')

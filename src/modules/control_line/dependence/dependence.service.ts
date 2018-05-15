@@ -1,7 +1,7 @@
 
 import { Component, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Dependence } from './dependence/dependence.entity';
+import { Dependence } from './dependence.entity';
 
 @Component()
 export class DependenceService {

@@ -2,9 +2,10 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
 import { DependenceProviders } from './dependence.providers';
-import { DependenceService } from './dependence.service';
+import { DependenceService } from './dependence/dependence.service';
 import { DependenceController} from './dependence.controller';
 import { CompanyService } from './company/company.service'
+import { CompanyController} from './company/company.controller'
 
 @Module({
   imports: [DatabaseModule],
@@ -13,6 +14,6 @@ import { CompanyService } from './company/company.service'
     DependenceService,
     CompanyService,
   ],
-  controllers:[DependenceController],
+  controllers:[DependenceController, CompanyController],
 })
 export class ControlLineModule {}

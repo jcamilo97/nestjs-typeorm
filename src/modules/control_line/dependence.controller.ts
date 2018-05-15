@@ -1,5 +1,5 @@
 import { Get, Post, Res, Body, HttpCode, Controller } from '@nestjs/common';
-import { DependenceService } from './dependence.service';
+import { DependenceService } from './dependence/dependence.service';
 
 @Controller('dependence')
 export class DependenceController {

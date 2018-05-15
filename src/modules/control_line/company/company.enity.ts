@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, OneToMany, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, CreateDateColumn, OneToMany, JoinColumn } from 'typeorm';
 import { Dependence } from '../dependence/dependence.entity'
 @Entity()
 export class Company {
     
-    @PrimaryColumn('int4')
+    @PrimaryGeneratedColumn()
     com_id: number;
 
     @Column()
@@ -27,17 +27,20 @@ export class Company {
     @Column()
     com_type: string;
     
-    @Column()
+    @CreateDateColumn({nullable:true,type:"date",default:'now'})
     com_created_at:string;
 
     @Column('int4')
     companycom_id:number;
 
-    @Column('numeric')
+    @Column({type:"numeric", precision:12, scale:7 })
     com_lat:number;
 
-    @Column('numeric')
+    @Column({type:"numeric", precision:12, scale:7 })
     com_lng:number;
+
+    @Column({type:"numeric", precision:3})
+    com_code_iso3166: number;
 
     @OneToMany(type => Dependence, dependence => dependence.companycom_id)
     dependences: Dependence[];

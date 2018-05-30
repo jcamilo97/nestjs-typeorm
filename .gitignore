@@ -384,7 +384,9 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
+=======
+files
+src/modules/control_line/data.ts
 =======
 # Local
 dokcer-compose.yml

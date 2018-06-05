@@ -3,24 +3,33 @@ import { Company } from '../company/company.enity'
 
 @Entity()
 export class Dependence {
+   
+    @Column()
+    id:string;
+
+    @PrimaryColumn("varchar",{length:200})
+    name: string;
+
+    @Column()
+    type: boolean;
+
+    @Column()
+    state: boolean;
+
+    @Column()
+    x: number;
+
+    @Column()
+    y: number;
     
     @PrimaryColumn("varchar",{length:200})
-    dep_name: string;
+    company_id:string;
 
     @Column()
-    dep_type: boolean;
+    dependence_name: string;
 
-    @Column()
-    dep_state: boolean;
-    
-    @PrimaryColumn("int4")
-    companycom_id:number;
-
-    @Column()
-    dependencedep_name: string;
-
-    @Column("int4")
-    dependencecompanycom_id: number;
+    @Column("varchar",{length:200})
+    dependence_company_id: string;
 
     
     @ManyToOne(type => Company, company => company.dependences)

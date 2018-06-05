@@ -13,11 +13,10 @@ export class DependenceService {
   }
 
   async create(dependenceItem){
-    let dependence = new Dependence()
-    dependence.dep_name = dependenceItem.name;
-    dependence.dep_type = dependenceItem.type;
-    dependence.companycom_id = dependenceItem.companyid;
-    return await this.CompanyRepository.save(dependence)
+    return await this.CompanyRepository.createQueryBuilder()
+    .insert()
+    .into(Dependence)
+    .values([dependenceItem]).execute()
     .then(res => {
        // TODO: Add some logic here
       "susccefull"

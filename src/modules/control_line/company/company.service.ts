@@ -12,14 +12,15 @@ export class CompanyService {
   }
 
   async createCompany(newCompany) {
+    console.log("body", newCompany)
     return await this.CompanyRepository.createQueryBuilder()
       .insert()
       .into(Company)
       .values([newCompany]).execute()
-      .then(response => { return "insert succefull:" + JSON.stringify(response) })
+      .then(response => { return  JSON.stringify(response) })
       .catch(err => {
-        console.log(err)
-        return err.message
+        console.log("hay err",err)
+        return err
       })
   }
   async updateCompany(comKey, companyItems) {

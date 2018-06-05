@@ -14,7 +14,9 @@ export class CompanyController {
  
   @Post()
   async create(@Res() res, @Body() Body ){
-    res.send( await this.companyservice.createCompany(Body));
+    let response =  await this.companyservice.createCompany(Body)
+    console.log("resssssssssssssssssssspon",response)
+    res.send(response);
   }
 
   @Patch('/:id')

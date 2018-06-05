@@ -3,37 +3,37 @@ import { Dependence } from '../dependence/dependence.entity'
 @Entity()
 export class Company {
     
-    @PrimaryGeneratedColumn()
-    com_id: number;
+    @PrimaryColumn()
+    com_id: string;
 
     @Index({ unique: true })
     @Column()
-    com_nit:number;
+    nit:number;
 
     @Index({ unique: true })
     @Column({length:200})
-    com_name: string;
+    name: string;
 
     @Column()
-    com_address: number;
+    adress: number;
 
     @Column()
-    com_telephone: number;
+    phone: number;
 
     @Column()
-    com_city: string;
+    city: string;
 
     @Column()
-    com_state: boolean;
+    state: boolean;
     
     @Column()
-    com_type: string;
+    type: string;
     
     @CreateDateColumn({nullable:true,type:"date",default:"('now'::text)::date"})
     com_created_at:string;
 
-    @Column('int4')
-    companycom_id:number;
+    @Column()
+    companycom_id:string;
 
     @Column({type:"numeric", precision:12, scale:7 })
     com_lat:number;
@@ -44,6 +44,12 @@ export class Company {
     @Column({type:"numeric", precision:3})
     com_code_iso3166: number;
 
-    @OneToMany(type => Dependence, dependence => dependence.companycom_id)
+    @Column({type:"real"})
+    x: number;
+
+    @Column({type:"real"})
+    y: number;
+
+    @OneToMany(type => Dependence, dependence => dependence.company_id)
     dependences: Dependence[];
 }

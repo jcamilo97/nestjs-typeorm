@@ -1,6 +1,8 @@
 import { Get, Post, Res, Body, HttpCode, Controller } from '@nestjs/common';
 import { EdgeService } from './edge/edge.services';
 import { dataMock } from './data.mock';
+
+
 @Controller('control_line')
 export class ControlLineController {
   constructor(

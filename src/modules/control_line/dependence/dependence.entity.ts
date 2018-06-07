@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn} from 'typeorm';
 import { Company } from '../company/company.enity' 
 
 @Entity()
@@ -14,7 +14,7 @@ export class Dependence {
     type: boolean;
 
     @Column()
-    state: boolean;
+    state: string;
 
     @Column()
     x: number;
@@ -24,15 +24,5 @@ export class Dependence {
     
     @PrimaryColumn("varchar",{length:200})
     company_id:string;
-
-    @Column()
-    dependence_name: string;
-
-    @Column("varchar",{length:200})
-    dependence_company_id: string;
-
-    
-    @ManyToOne(type => Company, company => company.dependences)
-    company: Company;
     
 }

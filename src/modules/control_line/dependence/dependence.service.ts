@@ -19,8 +19,8 @@ export class DependenceService {
     .values([dependenceItem]).execute()
     .then(res => {
        // TODO: Add some logic here
-      "susccefull"
+      return `{"message":"insert succefull"}`
     })
-    .catch(err => console.log(err));
+    .catch(err => {return err});
   }
 }

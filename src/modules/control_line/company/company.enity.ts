@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, Index, CreateDateColumn, OneToMany, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, Index, CreateDateColumn } from 'typeorm';
 import { Dependence } from '../dependence/dependence.entity'
+
 @Entity()
 export class Company {
     
@@ -49,7 +50,4 @@ export class Company {
 
     @Column({type:"real"})
     y: number;
-
-    @OneToMany(type => Dependence, dependence => dependence.company_id)
-    dependences: Dependence[];
 }

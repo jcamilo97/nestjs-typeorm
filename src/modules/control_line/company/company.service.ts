@@ -1,7 +1,9 @@
 
-import { Component, Inject } from '@nestjs/common';
+import { Component, Inject,  HttpStatus, HttpException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Company } from './company.enity';
+
+
 @Component()
 export class CompanyService {
   constructor(
@@ -12,24 +14,25 @@ export class CompanyService {
   }
 
   async createCompany(newCompany) {
-    console.log("body", newCompany)
     return await this.CompanyRepository.createQueryBuilder()
       .insert()
       .into(Company)
       .values([newCompany]).execute()
-      .then(response => { return  JSON.stringify(response) })
-      .catch(err => {
-        console.log("hay err",err)
-        return err
-      })
+      .then(response => { return  JSON.stringify(response)})
+      .catch(err => { return err})
   }
+
   async updateCompany(comKey, companyItems) {
-    return await this.CompanyRepository.createQueryBuilder()
-      .update(Company)
-      .set(companyItems)
-      .where('com_id = :id', { id: comKey }).execute()
-      .then(response => { return JSON.stringify(response) })
-      .catch(err => { console.log(err) 
-        return err.message })
+    let query:string = "UPDATE company SET";
+    let iterator = Object.keys(companyItems);
+    for (const key in companyItems) {    
+        query += " "+key+`=$${iterator.indexOf(key)+1},`  
+    }
+    query = query.slice(0,-1)
+    query += ` WHERE company.com_id ='${comKey}' `
+    
+    return await this.CompanyRepository.query(query, Object.values(companyItems))
+      .then(response => { return '{"result":"update was success"}' })
+      .catch(err => { return err.message })
   }
 }

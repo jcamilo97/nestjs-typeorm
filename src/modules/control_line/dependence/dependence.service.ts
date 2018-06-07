@@ -6,21 +6,35 @@ import { Dependence } from './dependence.entity';
 @Component()
 export class DependenceService {
   constructor(
-    @Inject('DependenceRepositoryToken') private readonly CompanyRepository: Repository<Dependence>) {}
+    @Inject('DependenceRepositoryToken') private readonly DependenceRepository: Repository<Dependence>) {}
 
   async findAll(): Promise<Dependence[]> {
-    return await this.CompanyRepository.find();
+    return await this.DependenceRepository.find();
   }
 
-  async create(dependenceItem){
-    return await this.CompanyRepository.createQueryBuilder()
+  async create(newDependence){
+    return await this.DependenceRepository.createQueryBuilder()
     .insert()
     .into(Dependence)
-    .values([dependenceItem]).execute()
+    .values([newDependence]).execute()
     .then(res => {
        // TODO: Add some logic here
-      return `{"message":"insert succefull"}`
+      return JSON.parse('{"message":"insert succefull"}')
     })
     .catch(err => {return err});
+  }
+
+  async updateDependence(depKey, dependenceItems) {
+    let query:string = "UPDATE dependence SET";
+    let iterator = Object.keys(dependenceItems);
+    for (const key in dependenceItems) {    
+      query += " "+key+`=$${iterator.indexOf(key)+1},`  
+    }
+    query = query.slice(0,-1)
+    query += ` WHERE dependence.com_id ='${depKey}'`
+    
+    return await this.DependenceRepository.query(query, Object.values(dependenceItems))
+      .then(response => { return '{"result":"update was success"}' })
+      .catch(err => { return err.message })
   }
 }
